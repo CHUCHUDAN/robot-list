@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>robot-favorite</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body>
+  <!--   nav-bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Robot List</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ps-2 mt-2 ps-lg-0 mt-lg-0">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item ps-2 mt-2 ps-lg-0 mt-lg-0 rounded-3 bg-light">
+            <a class="nav-link active" href="favorite.html">favorite</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-2">
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-danger"  data-bs-toggle='modal' data-bs-target='#robotDeleteAll'>全部刪除</button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="container-fluid">
+      <div class="row" id='data-panel'>
+        <!-- display-content -->
+      </div>
+    </div>
+  </div>
+  <!-- modal -->
+  <div class="modal fade" id="robotModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="robot-modal-name">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6" id='robot-modal-avatar'>
+              <img class='w-100' src="https://robohash.org/totamrerummodi.png?size=300x300&set=set1" alt="">
+            </div>
+            <div class="col-6 ">
+              <div class="row">
+                <div class="col-6 my-3" id='robot-modal-surname'>surname</div>
+                <div class='my-2' id='robot-modal-email'>email</div>
+                <div class='my-2' id='robot-modal-gender'>gender</div>
+                <div class='my-2' id='robot-modal-age'>age</div>
+                <div class='my-2' id='robot-modal-region'>region</div>
+                <div class='my-2' id='robot-modal-birthday'>birthday</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal-Delete -->
+  <div class="modal fade" id="robotDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><h4>警告!!!</h4></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="deleteModalBody">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="deleteButton" data-bs-dismiss="modal">確定</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal-Delete-all -->
+  <div class="modal fade" id="robotDeleteAll" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><h4>警告!!!</h4></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id='robotDeleteAllBody'>
+          <h4>確定要將全部項目刪除?</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary robotDeleteAll" id='robotDeleteAll' data-bs-dismiss="modal">確定</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="favorite.js"></script>
+  <script src="https://replit.com/public/js/replit-badge.js" theme="blue" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"
+    integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+    integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
